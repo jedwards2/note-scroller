@@ -5,3 +5,11 @@
   margin: 5px 0px;
   margin-left: 5px;
 }
+
+.column-on {
+  background-color: red
+}
+
+.column-off {
+  background-color: transparent;
+}
