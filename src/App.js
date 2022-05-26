@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+// import * as Tone from "tone";
+import Grid from "./components/Grid/Grid";
 
 function App() {
+  // const synth = new Tone.Synth().toDestination();
+  // const synth2 = new Tone.Synth().toDestination();
+  // let playNote = (note) => synth.triggerAttack(note);
+  // // let playNote2 = (note) => synth2.triggerAttackRelease(note, "2n");
+  // let stopNote = () => synth.triggerRelease();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid />
     </div>
   );
 }
