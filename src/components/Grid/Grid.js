@@ -51,7 +51,6 @@ function Grid() {
       return newState;
     });
   }
-  console.log(gridState);
 
   return (
     <div className="grid">

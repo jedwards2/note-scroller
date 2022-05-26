@@ -1,5 +1,10 @@
 .grid {
   display: flex;
   flex-direction: row;
-  gap: 15px;
+  background-color: lightgray;
+  gap: 5px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 15px;
+  width: 250px
 }

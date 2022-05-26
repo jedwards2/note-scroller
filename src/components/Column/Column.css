@@ -1,5 +1,7 @@
 .column {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
+  margin: 5px 0px;
+  margin-left: 5px;
 }
