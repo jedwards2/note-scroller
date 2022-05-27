@@ -1,6 +1,6 @@
 import "./App.css";
+import { useState, useEffect } from "react";
 import * as Tone from "tone";
-import { useState } from "react";
 import Grid from "./components/Grid/Grid";
 
 function App() {
@@ -8,30 +8,35 @@ function App() {
   const [gridBorders, setGridBorders] = useState([false, false, false, false]);
   const [gridState, setGridState] = useState([
     [
-      { state: false, id: 0 },
-      { state: false, id: 1 },
-      { state: false, id: 2 },
-      { state: false, id: 3 },
+      { state: false, id: 0, note: "C2" },
+      { state: false, id: 1, note: "G2" },
+      { state: false, id: 2, note: "D3" },
+      { state: false, id: 3, note: "A3" },
     ],
     [
-      { state: false, id: 4 },
-      { state: false, id: 5 },
-      { state: false, id: 6 },
-      { state: false, id: 7 },
+      { state: false, id: 4, note: "C2" },
+      { state: false, id: 5, note: "G2" },
+      { state: false, id: 6, note: "D3" },
+      { state: false, id: 7, note: "A3" },
     ],
     [
-      { state: false, id: 8 },
-      { state: false, id: 9 },
-      { state: false, id: 10 },
-      { state: false, id: 11 },
+      { state: false, id: 8, note: "C2" },
+      { state: false, id: 9, note: "G2" },
+      { state: false, id: 10, note: "D3" },
+      { state: false, id: 11, note: "A3" },
     ],
     [
-      { state: false, id: 12 },
-      { state: false, id: 13 },
-      { state: false, id: 14 },
-      { state: false, id: 15 },
+      { state: false, id: 12, note: "C2" },
+      { state: false, id: 13, note: "G2" },
+      { state: false, id: 14, note: "D3" },
+      { state: false, id: 15, note: "A3" },
     ],
   ]);
+  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
+
+  function playNote(note) {
+    synth.triggerAttackRelease(note, "8n");
+  }
 
   function setBlock(id) {
     setGridState((prevState) => {
@@ -43,6 +48,7 @@ function App() {
             column.push({
               state: !prevState[i][q].state,
               id: id,
+              note: prevState[i][q].note,
             });
           } else {
             column.push(prevState[i][q]);
@@ -63,24 +69,18 @@ function App() {
       let newState = [...prevState];
       newState[prevIndex] = !prevState[prevIndex];
       newState[index] = !prevState[index];
-      console.log(newState);
       return newState;
     });
   }
 
-  const synth = new Tone.Synth().toDestination();
-  // const synth2 = new Tone.Synth().toDestination();
-  let playNote = (note) => synth.triggerAttack(note);
-  // // let playNote2 = (note) => synth2.triggerAttackRelease(note, "2n");
-  // let stopNote = () => synth.triggerRelease();
-
   return (
     <div className="App">
-      <button onClick={stepForward}>Play</button>
+      <button onClick={stepForward}>Step Forward</button>
       <Grid
         gridState={gridState}
         gridBackgrounds={gridBorders}
         setBlock={setBlock}
+        playNote={playNote}
       />
     </div>
   );
