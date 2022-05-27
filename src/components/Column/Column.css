@@ -4,10 +4,11 @@
   gap: 5px;
   margin: 5px 0px;
   margin-left: 5px;
+  border-radius: 10px
 }
 
 .column-on {
-  background-color: red
+  background-color: darkgray
 }
 
 .column-off {

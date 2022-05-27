@@ -1,28 +1,28 @@
 import Column from "../Column/Column";
 import "./Grid.css";
 
-function Grid({ gridState, columnBackgrounds, setBlock }) {
+function Grid({ gridState, gridBackgrounds, setBlock }) {
   return (
     <div className="grid">
       <Column
         columnState={gridState[0]}
         setBlock={setBlock}
-        background={columnBackgrounds[0]}
+        background={gridBackgrounds[0]}
       />
       <Column
         columnState={gridState[1]}
         setBlock={setBlock}
-        background={columnBackgrounds[1]}
+        background={gridBackgrounds[1]}
       />
       <Column
         columnState={gridState[2]}
         setBlock={setBlock}
-        background={columnBackgrounds[1]}
+        background={gridBackgrounds[2]}
       />
       <Column
         columnState={gridState[3]}
         setBlock={setBlock}
-        background={columnBackgrounds[1]}
+        background={gridBackgrounds[3]}
       />
     </div>
   );

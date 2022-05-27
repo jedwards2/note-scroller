@@ -1,16 +1,11 @@
 import "./App.css";
-// import * as Tone from "tone";
+import * as Tone from "tone";
 import { useState } from "react";
 import Grid from "./components/Grid/Grid";
 
 function App() {
-  const [clock, setClock] = useState({ state: false, count: 0 });
-  const [columnBackgrounds, setColumnBackgrounds] = useState([
-    true,
-    false,
-    false,
-    false,
-  ]);
+  const [count, setCount] = useState(0);
+  const [gridBorders, setGridBorders] = useState([false, false, false, false]);
   const [gridState, setGridState] = useState([
     [
       { state: false, id: 0 },
@@ -58,49 +53,33 @@ function App() {
       return newState;
     });
   }
-  function activateClock() {
-    // setClock((prevClock) => {
-    //   let newClock = { ...prevClock };
-    //   newClock["state"] = true;
-    //   return newClock;
-    // });
 
-    setClock((prevClock) => {
-      let newClock = { ...prevClock };
-      newClock.count = prevClock["count"] + 1;
-      return newClock;
-    });
+  function stepForward() {
+    setCount((prevCount) => prevCount + 1);
 
-    setColumnBackgrounds((prevState) => {
-      let index = clock.count % gridState.length;
+    setGridBorders((prevState) => {
+      let index = count % gridState.length;
+      let prevIndex = (count - 1) % gridState.length;
       let newState = [...prevState];
+      newState[prevIndex] = !prevState[prevIndex];
       newState[index] = !prevState[index];
+      console.log(newState);
       return newState;
     });
   }
 
-  // function stopClock() {
-  //   setClock((prevClock) => {
-  //     let newClock = { ...prevClock };
-  //     newClock["state"] = false;
-  //     return newClock;
-  //   });
-  // }
-  console.log(columnBackgrounds);
-
-  // const synth = new Tone.Synth().toDestination();
+  const synth = new Tone.Synth().toDestination();
   // const synth2 = new Tone.Synth().toDestination();
-  // let playNote = (note) => synth.triggerAttack(note);
+  let playNote = (note) => synth.triggerAttack(note);
   // // let playNote2 = (note) => synth2.triggerAttackRelease(note, "2n");
   // let stopNote = () => synth.triggerRelease();
 
   return (
     <div className="App">
-      <button onClick={activateClock}>Start Clock</button>
-      {/* <button onClick={stopClock}>Stop Clock</button> */}
+      <button onClick={stepForward}>Play</button>
       <Grid
         gridState={gridState}
-        columnBackgrounds={columnBackgrounds}
+        gridBackgrounds={gridBorders}
         setBlock={setBlock}
       />
     </div>
