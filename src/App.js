@@ -5,6 +5,7 @@ import Grid from "./components/Grid/Grid";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [running, setRunning] = useState(false);
   const [gridBorders, setGridBorders] = useState([false, false, false, false]);
   const [gridState, setGridState] = useState([
     [
@@ -32,10 +33,32 @@ function App() {
       { state: false, id: 15, note: "A3" },
     ],
   ]);
+
+  useEffect(() => {
+    const loop = new Tone.Loop((time) => {
+      setCount((prevCount) => prevCount + 1);
+
+      setGridBorders((prevState) => {
+        let index = count % gridState.length;
+        let prevIndex = (count - 1) % gridState.length;
+        let newState = [...prevState];
+        newState[prevIndex] = !prevState[prevIndex];
+        newState[index] = !prevState[index];
+        return newState;
+      });
+    }, "4n");
+
+    loop.start(0);
+
+    return () => {
+      loop.dispose();
+    };
+  });
+
   const synth = new Tone.PolySynth(Tone.Synth).toDestination();
 
-  function playNote(note) {
-    synth.triggerAttackRelease(note, "8n");
+  function playNote(note, time) {
+    synth.triggerAttackRelease(note, "8n", time);
   }
 
   function setBlock(id) {
@@ -60,22 +83,18 @@ function App() {
     });
   }
 
-  function stepForward() {
-    setCount((prevCount) => prevCount + 1);
-
-    setGridBorders((prevState) => {
-      let index = count % gridState.length;
-      let prevIndex = (count - 1) % gridState.length;
-      let newState = [...prevState];
-      newState[prevIndex] = !prevState[prevIndex];
-      newState[index] = !prevState[index];
-      return newState;
-    });
+  function switchRunning() {
+    if (!running) {
+      Tone.Transport.start();
+    } else {
+      Tone.Transport.stop();
+    }
+    setRunning((prevState) => !prevState);
   }
 
   return (
     <div className="App">
-      <button onClick={stepForward}>Step Forward</button>
+      <button onClick={switchRunning}>{running ? "Stop" : "Start"}</button>
       <Grid
         gridState={gridState}
         gridBackgrounds={gridBorders}
