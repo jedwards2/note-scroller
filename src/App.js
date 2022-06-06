@@ -2,6 +2,8 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import * as Tone from "tone";
 import Grid from "./components/Grid/Grid";
+import play from "./images/play.png";
+import pause from "./images/pause.png";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -94,13 +96,24 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={switchRunning}>{running ? "Stop" : "Start"}</button>
-      <Grid
-        gridState={gridState}
-        gridBackgrounds={gridBorders}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
+      <div className="synthesizer-div">
+        <div className="synth-header">
+          <h1>Sequencer</h1>
+          <div onClick={switchRunning} className="play-pauseButton">
+            {running ? (
+              <img src={pause} alt="pause" className="buttonImg"></img>
+            ) : (
+              <img src={play} alt="play" className="buttonImg"></img>
+            )}
+          </div>
+        </div>
+        <Grid
+          gridState={gridState}
+          gridBackgrounds={gridBorders}
+          setBlock={setBlock}
+          playNote={playNote}
+        />
+      </div>
     </div>
   );
 }

@@ -6,11 +6,14 @@ function MusicBlock({ blockState, setBlock, active, playNote }) {
     if (blockState.state && active) {
       playNote(blockState.note);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, blockState]);
 
   return (
     <div
-      className={`music-block ${blockState.state ? "on" : "off"}`}
+      className={`music-block ${blockState.state ? "on" : "off"} ${
+        active ? "border-on" : "border-off"
+      }`}
       onClick={() => setBlock(blockState.id)}
     ></div>
   );

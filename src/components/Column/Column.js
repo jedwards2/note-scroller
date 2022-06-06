@@ -3,7 +3,7 @@ import "./Column.css";
 
 function Column({ columnState, setBlock, background, playNote }) {
   return (
-    <div className={`column ${background ? "column-on" : "column-off"}`}>
+    <div className="column">
       <MusicBlock
         blockState={columnState[0]}
         setBlock={setBlock}
