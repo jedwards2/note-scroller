@@ -11,28 +11,28 @@ function App() {
   const [gridBorders, setGridBorders] = useState([false, false, false, false]);
   const [gridState, setGridState] = useState([
     [
-      { state: false, id: 0, note: "C2" },
-      { state: false, id: 1, note: "G2" },
-      { state: false, id: 2, note: "D3" },
-      { state: false, id: 3, note: "A3" },
+      { state: false, id: 0, note: "G3" },
+      { state: false, id: 1, note: "F3" },
+      { state: false, id: 2, note: "E3" },
+      { state: false, id: 3, note: "C3" },
     ],
     [
-      { state: false, id: 4, note: "C2" },
-      { state: false, id: 5, note: "G2" },
-      { state: false, id: 6, note: "D3" },
-      { state: false, id: 7, note: "A3" },
+      { state: false, id: 4, note: "G3" },
+      { state: false, id: 5, note: "F3" },
+      { state: false, id: 6, note: "E3" },
+      { state: false, id: 7, note: "C3" },
     ],
     [
-      { state: false, id: 8, note: "C2" },
-      { state: false, id: 9, note: "G2" },
-      { state: false, id: 10, note: "D3" },
-      { state: false, id: 11, note: "A3" },
+      { state: false, id: 8, note: "G3" },
+      { state: false, id: 9, note: "F3" },
+      { state: false, id: 10, note: "E3" },
+      { state: false, id: 11, note: "C3" },
     ],
     [
-      { state: false, id: 12, note: "C2" },
-      { state: false, id: 13, note: "G2" },
-      { state: false, id: 14, note: "D3" },
-      { state: false, id: 15, note: "A3" },
+      { state: false, id: 12, note: "G3" },
+      { state: false, id: 13, note: "F3" },
+      { state: false, id: 14, note: "E3" },
+      { state: false, id: 15, note: "C3" },
     ],
   ]);
 
