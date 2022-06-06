@@ -8,31 +8,31 @@ import pause from "./images/pause.png";
 function App() {
   const [count, setCount] = useState(0);
   const [running, setRunning] = useState(false);
-  const [gridBorders, setGridBorders] = useState([false, false, false, false]);
+  const [gridBorders, setGridBorders] = useState([true, false, false, false]);
   const [gridState, setGridState] = useState([
     [
-      { state: false, id: 0, note: "G3" },
-      { state: false, id: 1, note: "F3" },
-      { state: false, id: 2, note: "E3" },
-      { state: false, id: 3, note: "C3" },
+      { state: false, id: 0, note: "G3", borderActive: true },
+      { state: false, id: 1, note: "F3", borderActive: true },
+      { state: false, id: 2, note: "E3", borderActive: true },
+      { state: false, id: 3, note: "C3", borderActive: true },
     ],
     [
-      { state: false, id: 4, note: "G3" },
-      { state: false, id: 5, note: "F3" },
-      { state: false, id: 6, note: "E3" },
-      { state: false, id: 7, note: "C3" },
+      { state: false, id: 4, note: "G3", borderActive: false },
+      { state: false, id: 5, note: "F3", borderActive: false },
+      { state: false, id: 6, note: "E3", borderActive: false },
+      { state: false, id: 7, note: "C3", borderActive: false },
     ],
     [
-      { state: false, id: 8, note: "G3" },
-      { state: false, id: 9, note: "F3" },
-      { state: false, id: 10, note: "E3" },
-      { state: false, id: 11, note: "C3" },
+      { state: false, id: 8, note: "G3", borderActive: false },
+      { state: false, id: 9, note: "F3", borderActive: false },
+      { state: false, id: 10, note: "E3", borderActive: false },
+      { state: false, id: 11, note: "C3", borderActive: false },
     ],
     [
-      { state: false, id: 12, note: "G3" },
-      { state: false, id: 13, note: "F3" },
-      { state: false, id: 14, note: "E3" },
-      { state: false, id: 15, note: "C3" },
+      { state: false, id: 12, note: "G3", borderActive: false },
+      { state: false, id: 13, note: "F3", borderActive: false },
+      { state: false, id: 14, note: "E3", borderActive: false },
+      { state: false, id: 15, note: "C3", borderActive: false },
     ],
   ]);
 
@@ -42,10 +42,33 @@ function App() {
 
       setGridBorders((prevState) => {
         let index = count % gridState.length;
-        let prevIndex = (count - 1) % gridState.length;
+        let nextIndex = (count + 1) % gridState.length;
         let newState = [...prevState];
-        newState[prevIndex] = !prevState[prevIndex];
+        newState[nextIndex] = !prevState[nextIndex];
         newState[index] = !prevState[index];
+        return newState;
+      });
+
+      setGridState((prevState) => {
+        let index = count % prevState.length;
+        let nextIndex = (count + 1) % prevState.length;
+        let newState = [...prevState];
+        let newNextState = newState[nextIndex].map((obj) => {
+          let newObj = { ...obj };
+          newObj.borderActive = !newObj.borderActive;
+          return newObj;
+        });
+
+        newState[nextIndex] = newNextState;
+
+        let currentIndexedState = newState[index].map((obj) => {
+          let newObj2 = { ...obj };
+          newObj2.borderActive = !newObj2.borderActive;
+          return newObj2;
+        });
+
+        newState[index] = currentIndexedState;
+
         return newState;
       });
     }, "4n");
@@ -74,6 +97,7 @@ function App() {
               state: !prevState[i][q].state,
               id: id,
               note: prevState[i][q].note,
+              borderActive: prevState[i][q].borderActive,
             });
           } else {
             column.push(prevState[i][q]);
@@ -107,12 +131,7 @@ function App() {
             )}
           </div>
         </div>
-        <Grid
-          gridState={gridState}
-          gridBackgrounds={gridBorders}
-          setBlock={setBlock}
-          playNote={playNote}
-        />
+        <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
       </div>
     </div>
   );

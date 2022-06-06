@@ -1,18 +1,18 @@
 import "./MusicBlock.css";
 import { useEffect } from "react";
 
-function MusicBlock({ blockState, setBlock, active, playNote }) {
+function MusicBlock({ blockState, setBlock, playNote }) {
   useEffect(() => {
-    if (blockState.state && active) {
+    if (blockState.state && blockState.borderActive) {
       playNote(blockState.note);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [active, blockState]);
+  }, [blockState]);
 
   return (
     <div
       className={`music-block ${blockState.state ? "on" : "off"} ${
-        active ? "border-on" : "border-off"
+        blockState.borderActive ? "border-on" : "border-off"
       }`}
       onClick={() => setBlock(blockState.id)}
     ></div>
