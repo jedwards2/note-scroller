@@ -8,7 +8,6 @@ import pause from "./images/pause.png";
 function App() {
   const [count, setCount] = useState(0);
   const [running, setRunning] = useState(false);
-  const [gridBorders, setGridBorders] = useState([true, false, false, false]);
   const [gridState, setGridState] = useState([
     [
       { state: false, id: 0, note: "G3", borderActive: true },
@@ -39,15 +38,6 @@ function App() {
   useEffect(() => {
     const loop = new Tone.Loop((time) => {
       setCount((prevCount) => prevCount + 1);
-
-      setGridBorders((prevState) => {
-        let index = count % gridState.length;
-        let nextIndex = (count + 1) % gridState.length;
-        let newState = [...prevState];
-        newState[nextIndex] = !prevState[nextIndex];
-        newState[index] = !prevState[index];
-        return newState;
-      });
 
       setGridState((prevState) => {
         let index = count % prevState.length;
