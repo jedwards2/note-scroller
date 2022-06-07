@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import * as Tone from "tone";
 import Grid from "./components/Grid/Grid";
 import NoteSet from "./components/NoteSet/NoteSet";
+import TempoSlider from "./components/TempoSlider";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
-import CircularSlider from "@fseehawer/react-circular-slider";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -171,22 +171,7 @@ function App() {
             )}
           </div>
           <h2>Tempo</h2>
-          <div className="button-div">
-            <CircularSlider
-              onChange={(value) => (Tone.Transport.bpm.value = value)}
-              className="tempo-slider"
-              width={35}
-              min={60}
-              max={200}
-              dataIndex={30}
-              knobColor={"black"}
-              knobSize={20}
-              hideLabelValue={true}
-              progressColorTo={"orange"}
-              progressColorFrom={"orange"}
-              trackColor={"lightblue"}
-            ></CircularSlider>
-          </div>
+          <TempoSlider />
         </div>
         <div className="bottom-row">
           <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
