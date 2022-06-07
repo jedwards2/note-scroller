@@ -8,7 +8,6 @@ import CircularSlider from "@fseehawer/react-circular-slider";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [tempo, setTempo] = useState(60);
   const [running, setRunning] = useState(false);
   const [gridState, setGridState] = useState([
     [
@@ -134,8 +133,6 @@ function App() {
 
     setRunning((prevState) => !prevState);
   }
-
-  function switchTempo() {}
 
   return (
     <div className="App">
