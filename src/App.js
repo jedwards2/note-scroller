@@ -105,6 +105,7 @@ function App() {
     } else {
       Tone.Transport.stop();
     }
+
     setRunning((prevState) => !prevState);
   }
 

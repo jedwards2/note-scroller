@@ -2,30 +2,18 @@ import Column from "../Column/Column";
 import "./Grid.css";
 
 function Grid({ gridState, setBlock, playNote }) {
-  return (
-    <div className="grid">
+  const columns = gridState.map((array, idx) => {
+    return (
       <Column
-        columnState={gridState[0]}
+        columnState={array}
         setBlock={setBlock}
         playNote={playNote}
-      />
-      <Column
-        columnState={gridState[1]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-      <Column
-        columnState={gridState[2]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-      <Column
-        columnState={gridState[3]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-    </div>
-  );
+        key={`array + ${idx}`}
+      ></Column>
+    );
+  });
+
+  return <div className="grid">{columns}</div>;
 }
 
 export default Grid;

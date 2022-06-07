@@ -2,30 +2,17 @@ import MusicBlock from "../MusicBlock/MusicBlock";
 import "./Column.css";
 
 function Column({ columnState, setBlock, playNote }) {
-  return (
-    <div className="column">
+  const blocks = columnState.map((obj, idx) => {
+    return (
       <MusicBlock
-        blockState={columnState[0]}
+        blockState={obj}
         setBlock={setBlock}
         playNote={playNote}
-      />
-      <MusicBlock
-        blockState={columnState[1]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-      <MusicBlock
-        blockState={columnState[2]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-      <MusicBlock
-        blockState={columnState[3]}
-        setBlock={setBlock}
-        playNote={playNote}
-      />
-    </div>
-  );
+        key={`obj + ${idx}`}
+      ></MusicBlock>
+    );
+  });
+  return <div className="column">{blocks}</div>;
 }
 
 export default Column;
