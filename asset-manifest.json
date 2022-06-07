@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/note-scroller/static/css/main.38372c1c.css",
+    "main.js": "/note-scroller/static/js/main.e3c40198.js",
+    "static/media/pause.png": "/note-scroller/static/media/pause.83b7efb08665da2dbd45.png",
+    "static/media/play.png": "/note-scroller/static/media/play.1d486a14dc80203a4d35.png",
+    "index.html": "/note-scroller/index.html",
+    "main.38372c1c.css.map": "/note-scroller/static/css/main.38372c1c.css.map",
+    "main.e3c40198.js.map": "/note-scroller/static/js/main.e3c40198.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38372c1c.css",
+    "static/js/main.e3c40198.js"
+  ]
+}
