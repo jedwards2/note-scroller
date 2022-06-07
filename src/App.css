@@ -17,7 +17,7 @@
   flex-direction: row;
 }
 
-.play-pauseButton {
+.button-div {
   margin: 15px;
   background-color: lightgray;
   width: 50px;
@@ -30,6 +30,11 @@
 }
 
 .buttonImg {
+  width: 35px;
+  height: 35px;
+}
+
+.tempo-slider {
   width: 35px;
   height: 35px;
 }

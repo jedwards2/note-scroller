@@ -4,9 +4,11 @@ import * as Tone from "tone";
 import Grid from "./components/Grid/Grid";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
+import CircularSlider from "@fseehawer/react-circular-slider";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [tempo, setTempo] = useState(60);
   const [running, setRunning] = useState(false);
   const [gridState, setGridState] = useState([
     [
@@ -32,6 +34,30 @@ function App() {
       { state: false, id: 13, note: "F3", borderActive: false },
       { state: false, id: 14, note: "E3", borderActive: false },
       { state: false, id: 15, note: "C3", borderActive: false },
+    ],
+    [
+      { state: false, id: 16, note: "G3", borderActive: false },
+      { state: false, id: 17, note: "F3", borderActive: false },
+      { state: false, id: 18, note: "E3", borderActive: false },
+      { state: false, id: 19, note: "C3", borderActive: false },
+    ],
+    [
+      { state: false, id: 20, note: "G3", borderActive: false },
+      { state: false, id: 21, note: "F3", borderActive: false },
+      { state: false, id: 22, note: "E3", borderActive: false },
+      { state: false, id: 23, note: "C3", borderActive: false },
+    ],
+    [
+      { state: false, id: 24, note: "G3", borderActive: false },
+      { state: false, id: 25, note: "F3", borderActive: false },
+      { state: false, id: 26, note: "E3", borderActive: false },
+      { state: false, id: 27, note: "C3", borderActive: false },
+    ],
+    [
+      { state: false, id: 28, note: "G3", borderActive: false },
+      { state: false, id: 29, note: "F3", borderActive: false },
+      { state: false, id: 30, note: "E3", borderActive: false },
+      { state: false, id: 31, note: "C3", borderActive: false },
     ],
   ]);
 
@@ -109,17 +135,36 @@ function App() {
     setRunning((prevState) => !prevState);
   }
 
+  function switchTempo() {}
+
   return (
     <div className="App">
       <div className="synthesizer-div">
         <div className="synth-header">
           <h1>Sequencer</h1>
-          <div onClick={switchRunning} className="play-pauseButton">
+          <div onClick={switchRunning} className="button-div">
             {running ? (
               <img src={pause} alt="pause" className="buttonImg"></img>
             ) : (
               <img src={play} alt="play" className="buttonImg"></img>
             )}
+          </div>
+          <h2>Tempo</h2>
+          <div className="button-div">
+            <CircularSlider
+              onChange={(value) => (Tone.Transport.bpm.value = value)}
+              className="tempo-slider"
+              width={35}
+              min={60}
+              max={120}
+              dataIndex={30}
+              knobColor={"black"}
+              knobSize={20}
+              hideLabelValue={true}
+              progressColorTo={"orange"}
+              progressColorFrom={"orange"}
+              trackColor={"lightblue"}
+            ></CircularSlider>
           </div>
         </div>
         <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
