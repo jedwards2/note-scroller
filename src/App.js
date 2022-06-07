@@ -2,6 +2,7 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import * as Tone from "tone";
 import Grid from "./components/Grid/Grid";
+import NoteSet from "./components/NoteSet/NoteSet";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
 import CircularSlider from "@fseehawer/react-circular-slider";
@@ -124,6 +125,29 @@ function App() {
     });
   }
 
+  function updateNote(row, value) {
+    setGridState((prevState) => {
+      const newState = [];
+      for (let i = 0; i < prevState.length; i++) {
+        let column = [];
+        for (let q = 0; q < prevState[i].length; q++) {
+          if (q === row) {
+            column.push({
+              state: prevState[i][q].state,
+              id: prevState[i][q].id,
+              note: value,
+              borderActive: prevState[i][q].borderActive,
+            });
+          } else {
+            column.push(prevState[i][q]);
+          }
+        }
+        newState.push(column);
+      }
+      return newState;
+    });
+  }
+
   function switchRunning() {
     if (!running) {
       Tone.Transport.start();
@@ -153,7 +177,7 @@ function App() {
               className="tempo-slider"
               width={35}
               min={60}
-              max={120}
+              max={200}
               dataIndex={30}
               knobColor={"black"}
               knobSize={20}
@@ -164,7 +188,15 @@ function App() {
             ></CircularSlider>
           </div>
         </div>
-        <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
+        <div className="bottom-row">
+          <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
+          <div className="noteset-columns">
+            <NoteSet updateNote={updateNote} row={0} defaultSpot={3}></NoteSet>
+            <NoteSet updateNote={updateNote} row={1} defaultSpot={2}></NoteSet>
+            <NoteSet updateNote={updateNote} row={2} defaultSpot={1}></NoteSet>
+            <NoteSet updateNote={updateNote} row={3} defaultSpot={0}></NoteSet>
+          </div>
+        </div>
       </div>
     </div>
   );
