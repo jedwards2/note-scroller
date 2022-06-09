@@ -4,8 +4,11 @@ import * as Tone from "tone";
 import Grid from "./components/Grid/Grid";
 import NoteSet from "./components/NoteSet/NoteSet";
 import TempoSlider from "./components/TempoSlider";
+import DistortionSlider from "./components/DistortionSlider";
+import ReverbSlider from "./components/ReverbSlider";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
+import { Reverb } from "tone";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -172,6 +175,10 @@ function App() {
           </div>
           <h2>Tempo</h2>
           <TempoSlider />
+          <h2>Distortion</h2>
+          <DistortionSlider />
+          <h2>Reverb</h2>
+          <ReverbSlider />
         </div>
         <div className="bottom-row">
           <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
