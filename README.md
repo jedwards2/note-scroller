@@ -1,4 +1,4 @@
-# note-scroller
+# SEQUENCER
 
 Sequencer with React and Tonejs
 
