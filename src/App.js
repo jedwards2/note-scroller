@@ -183,9 +183,9 @@ function App() {
         <div className="bottom-row">
           <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
           <div className="noteset-columns">
-            <NoteSet updateNote={updateNote} row={0} defaultSpot={3}></NoteSet>
-            <NoteSet updateNote={updateNote} row={1} defaultSpot={2}></NoteSet>
-            <NoteSet updateNote={updateNote} row={2} defaultSpot={1}></NoteSet>
+            <NoteSet updateNote={updateNote} row={0} defaultSpot={5}></NoteSet>
+            <NoteSet updateNote={updateNote} row={1} defaultSpot={4}></NoteSet>
+            <NoteSet updateNote={updateNote} row={2} defaultSpot={2}></NoteSet>
             <NoteSet updateNote={updateNote} row={3} defaultSpot={0}></NoteSet>
           </div>
         </div>
