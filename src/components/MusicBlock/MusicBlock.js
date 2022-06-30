@@ -1,10 +1,17 @@
 import "./MusicBlock.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import * as Tone from "tone";
 
 function MusicBlock({ blockState, setBlock, playNote }) {
+  const [synth, setSynth] = useState();
+
   useEffect(() => {
-    if (blockState.state && blockState.borderActive) {
-      playNote(blockState.note);
+    setSynth(new Tone.PolySynth(Tone.Synth).toDestination());
+  }, []);
+
+  useEffect(() => {
+    if (blockState.state && blockState.borderActive && synth) {
+      playNote(blockState.note, synth);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockState]);

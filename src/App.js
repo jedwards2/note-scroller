@@ -102,9 +102,7 @@ function App() {
     };
   });
 
-  const synth = new Tone.PolySynth(Tone.Synth).toDestination();
-
-  function playNote(note, time) {
+  function playNote(note, synth, time) {
     synth.triggerAttackRelease(note, "8n", time);
   }
 
