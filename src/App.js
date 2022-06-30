@@ -197,6 +197,10 @@ function App() {
         </div>
         <div className="piano--div">{keys}</div>
       </div>
+      <div className="footer">
+        <p>created by</p>
+        <a href="https://github.com/jedwards2">jedwards2</a>
+      </div>
     </div>
   );
 }
