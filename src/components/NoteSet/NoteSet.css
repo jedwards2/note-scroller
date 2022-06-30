@@ -1,7 +1,17 @@
 .noteset-row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   margin-bottom: -20px;
+}
+
+.selected {
+  background-color: orange;
+}
+
+.noteset-name {
+  background-color: lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  width: 70px;
 }

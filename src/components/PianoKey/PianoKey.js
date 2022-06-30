@@ -1,6 +1,6 @@
 import "./PianoKey.css";
 
-function PianoKey({ note }) {
+function PianoKey({ note, updateNote }) {
   let offsetNote =
     (note.name.includes("D") && !note.name.includes("/")) ||
     (note.name.includes("E") && !note.name.includes("/")) ||
@@ -16,7 +16,9 @@ function PianoKey({ note }) {
         className={`${note.name.includes("/") ? "black" : "white"} ${
           offsetNote ? "offset" : ""
         }`}
-        onClick={() => console.log(note)}
+        onClick={() => {
+          updateNote(note.name);
+        }}
       ></div>
     </div>
   );

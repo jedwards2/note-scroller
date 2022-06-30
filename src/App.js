@@ -15,6 +15,7 @@ import { Reverb } from "tone";
 function App() {
   const [count, setCount] = useState(0);
   const [running, setRunning] = useState(false);
+  const [currentRow, setCurrentRow] = useState([true, false, false, false]);
   const [gridState, setGridState] = useState([
     [
       { state: false, id: 0, note: "G3", borderActive: true },
@@ -130,7 +131,9 @@ function App() {
     });
   }
 
-  function updateNote(row, value) {
+  function updateNote(value) {
+    let row = currentRow.indexOf(true);
+    console.log(row);
     setGridState((prevState) => {
       const newState = [];
       for (let i = 0; i < prevState.length; i++) {
@@ -164,7 +167,20 @@ function App() {
   }
 
   const keys = noteData.map((note) => {
-    return <PianoKey note={note} />;
+    return (
+      <PianoKey note={note} updateNote={updateNote} currentRow={currentRow} />
+    );
+  });
+
+  const noteSets = currentRow.map((row, index) => {
+    return (
+      <NoteSet
+        setCurrentRow={setCurrentRow}
+        row={row}
+        rowNumber={index}
+        currentNote={gridState[0][index].note}
+      />
+    );
   });
 
   return (
@@ -188,12 +204,7 @@ function App() {
         </div>
         <div className="bottom-row">
           <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
-          <div className="noteset-columns">
-            <NoteSet updateNote={updateNote} row={0} defaultSpot={5}></NoteSet>
-            <NoteSet updateNote={updateNote} row={1} defaultSpot={4}></NoteSet>
-            <NoteSet updateNote={updateNote} row={2} defaultSpot={2}></NoteSet>
-            <NoteSet updateNote={updateNote} row={3} defaultSpot={0}></NoteSet>
-          </div>
+          <div className="noteset-columns">{noteSets}</div>
         </div>
         <div className="piano--div">{keys}</div>
       </div>
