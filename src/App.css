@@ -9,7 +9,7 @@
   background-color: orange;
   border-radius: 15px;
   border: black 2px solid;
-  width: 780px;
+  width: 850px;
 }
 
 .synth-header {
@@ -47,4 +47,13 @@
 
 .bottom-row {
   display: flex
+}
+
+.piano--div {
+  border: 1px solid black;
+  margin: 10px
+}
+
+.piano--div div:first-child {
+  border-left: none;
 }

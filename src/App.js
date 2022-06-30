@@ -6,8 +6,10 @@ import NoteSet from "./components/NoteSet/NoteSet";
 import TempoSlider from "./components/TempoSlider";
 import DistortionSlider from "./components/DistortionSlider";
 import ReverbSlider from "./components/ReverbSlider";
+import PianoKey from "./components/PianoKey/PianoKey";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
+import noteData from "./noteData";
 import { Reverb } from "tone";
 
 function App() {
@@ -161,6 +163,10 @@ function App() {
     setRunning((prevState) => !prevState);
   }
 
+  const keys = noteData.map((note) => {
+    return <PianoKey note={note} />;
+  });
+
   return (
     <div className="App">
       <div className="synthesizer-div">
@@ -189,6 +195,7 @@ function App() {
             <NoteSet updateNote={updateNote} row={3} defaultSpot={0}></NoteSet>
           </div>
         </div>
+        <div className="piano--div">{keys}</div>
       </div>
     </div>
   );
