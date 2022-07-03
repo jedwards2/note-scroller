@@ -216,7 +216,7 @@ function App() {
           <TempoSlider />
           <h2>Distortion</h2>
           <DistortionSlider setDistAmount={setDistAmount} />
-          <h2>Chorus</h2>
+          <h2>Reverb</h2>
           <ReverbSlider setReverbAmount={setReverbAmount} />
         </div>
         <div className="bottom-row">
