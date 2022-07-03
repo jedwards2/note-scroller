@@ -1,7 +1,7 @@
 import Column from "../Column/Column";
 import "./Grid.css";
 
-function Grid({ gridState, setBlock, playNote }) {
+function Grid({ gridState, setBlock, playNote, synth }) {
   const columns = gridState.map((array, idx) => {
     return (
       <Column
@@ -9,6 +9,7 @@ function Grid({ gridState, setBlock, playNote }) {
         setBlock={setBlock}
         playNote={playNote}
         key={`array + ${idx}`}
+        synth={synth}
       ></Column>
     );
   });

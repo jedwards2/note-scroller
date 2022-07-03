@@ -10,7 +10,6 @@ import PianoKey from "./components/PianoKey/PianoKey";
 import play from "./images/play.png";
 import pause from "./images/pause.png";
 import noteData from "./noteData";
-import { Reverb } from "tone";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -66,6 +65,26 @@ function App() {
       { state: false, id: 31, note: "C3", borderActive: false },
     ],
   ]);
+  const [synth, setSynth] = useState();
+  const [distAmount, setDistAmount] = useState(0.5);
+  const [reverbAmount, setReverbAmount] = useState(4);
+
+  useEffect(() => {
+    setSynth(new Tone.PolySynth(Tone.Synth));
+  }, []);
+
+  useEffect(() => {
+    const reverb = new Tone.Reverb(reverbAmount).toDestination();
+    const dist = new Tone.Distortion(distAmount).toDestination();
+    if (synth) {
+      synth.chain(dist, reverb);
+    }
+    return () => {
+      reverb.dispose();
+      dist.dispose();
+    };
+    // eslint-disable-next-line
+  }, [reverbAmount, distAmount]);
 
   useEffect(() => {
     const loop = new Tone.Loop((time) => {
@@ -196,12 +215,17 @@ function App() {
           <h2>Tempo</h2>
           <TempoSlider />
           <h2>Distortion</h2>
-          <DistortionSlider />
-          <h2>Reverb</h2>
-          <ReverbSlider />
+          <DistortionSlider setDistAmount={setDistAmount} />
+          <h2>Chorus</h2>
+          <ReverbSlider setReverbAmount={setReverbAmount} />
         </div>
         <div className="bottom-row">
-          <Grid gridState={gridState} setBlock={setBlock} playNote={playNote} />
+          <Grid
+            gridState={gridState}
+            setBlock={setBlock}
+            playNote={playNote}
+            synth={synth}
+          />
           <div className="noteset-columns">{noteSets}</div>
         </div>
         <div className="piano--div">{keys}</div>

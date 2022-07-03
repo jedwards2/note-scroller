@@ -1,14 +1,7 @@
 import "./MusicBlock.css";
-import { useEffect, useState } from "react";
-import * as Tone from "tone";
+import { useEffect } from "react";
 
-function MusicBlock({ blockState, setBlock, playNote }) {
-  const [synth, setSynth] = useState();
-
-  useEffect(() => {
-    setSynth(new Tone.PolySynth(Tone.Synth).toDestination());
-  }, []);
-
+function MusicBlock({ blockState, setBlock, playNote, synth }) {
   useEffect(() => {
     if (blockState.state && blockState.borderActive && synth) {
       playNote(blockState.note, synth);

@@ -1,16 +1,15 @@
-import * as Tone from "tone";
 import CircularSlider from "@fseehawer/react-circular-slider";
 
-function ReverbSlider() {
+function ReverbSlider({ setReverbAmount }) {
   return (
     <div className="button-div">
       <CircularSlider
-        onChange={(value) => console.log(value)}
+        onChange={(value) => setReverbAmount(value)}
         className="tempo-slider"
         width={35}
-        min={60}
-        max={200}
-        dataIndex={30}
+        min={1}
+        max={20}
+        dataIndex={5}
         knobColor={"black"}
         knobSize={20}
         hideLabelValue={true}

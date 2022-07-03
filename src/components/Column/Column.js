@@ -1,7 +1,7 @@
 import MusicBlock from "../MusicBlock/MusicBlock";
 import "./Column.css";
 
-function Column({ columnState, setBlock, playNote }) {
+function Column({ columnState, setBlock, playNote, synth }) {
   const blocks = columnState.map((obj, idx) => {
     return (
       <MusicBlock
@@ -9,6 +9,7 @@ function Column({ columnState, setBlock, playNote }) {
         setBlock={setBlock}
         playNote={playNote}
         key={`obj + ${idx}`}
+        synth={synth}
       ></MusicBlock>
     );
   });

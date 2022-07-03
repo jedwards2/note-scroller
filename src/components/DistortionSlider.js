@@ -1,16 +1,15 @@
-import * as Tone from "tone";
 import CircularSlider from "@fseehawer/react-circular-slider";
 
-function DistortionSlider() {
+function DistortionSlider({ setDistAmount }) {
   return (
     <div className="button-div">
       <CircularSlider
-        onChange={(value) => console.log(value)}
+        onChange={(value) => setDistAmount(value / 100)}
         className="tempo-slider"
         width={35}
-        min={60}
-        max={200}
-        dataIndex={30}
+        min={0}
+        max={100}
+        dataIndex={50}
         knobColor={"black"}
         knobSize={20}
         hideLabelValue={true}
